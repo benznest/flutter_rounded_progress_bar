@@ -51,10 +51,14 @@ class _MyAppState extends State<MyApp> {
             child: ListView(children: <Widget>[
               Column(
                 children: <Widget>[
-                  RoundedProgressBar(percent: percent),
                   RoundedProgressBar(
-                      percent: percent, theme: RoundedProgressBarTheme.green),
+                      percent: percent, childCenter: Text("$percent%")),
                   RoundedProgressBar(
+                      childLeft: Text("$percent%"),
+                      percent: percent,
+                      theme: RoundedProgressBarTheme.green),
+                  RoundedProgressBar(
+                      childRight: Text("$percent%"),
                       percent: percent,
                       theme: RoundedProgressBarTheme.red,
                       reverse: true),
@@ -74,16 +78,16 @@ class _MyAppState extends State<MyApp> {
                               fontWeight: FontWeight.bold,
                               color: Colors.yellow))),
                   RoundedProgressBar(
-                    style:
-                        RoundedProgressBarStyle(
-                            widthShadow: 30,colorBorder: Colors.blue[200]),
+                    style: RoundedProgressBarStyle(
+                        widthShadow: 30, colorBorder: Colors.blue[200]),
                     percent: percent,
                     reverse: true,
                   ),
                   RoundedProgressBar(
-                    style: RoundedProgressBarStyle(borderWidth: 0,
-                      widthShadow: 0),
-                    margin: EdgeInsets.symmetric(vertical: 16),borderRadius: BorderRadius.circular(24),
+                    style:
+                        RoundedProgressBarStyle(borderWidth: 0, widthShadow: 0),
+                    margin: EdgeInsets.symmetric(vertical: 16),
+                    borderRadius: BorderRadius.circular(24),
                     percent: percent,
                   ),
                 ],

@@ -51,7 +51,11 @@ class RoundedProgressBar extends StatefulWidget {
   final RoundedProgressBarStyle style;
   final RoundedProgressBarTheme theme;
   final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry paddingChildLeft;
+  final EdgeInsetsGeometry paddingChildRight;
   final Widget childCenter;
+  final Widget childLeft;
+  final Widget childRight;
   final bool reverse;
   final int milliseconds;
   final BorderRadiusGeometry borderRadius;
@@ -64,8 +68,12 @@ class RoundedProgressBar extends StatefulWidget {
       this.margin,
       this.reverse = false,
       this.childCenter,
+      this.childLeft,
+      this.childRight,
       this.milliseconds = 500,
-      this.borderRadius}) {
+      this.borderRadius,
+      this.paddingChildLeft,
+      this.paddingChildRight}) {
     assert(percent >= 0);
     assert(height > 0);
   }
@@ -79,9 +87,11 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
   double maxWidth;
   double widthProgress;
   RoundedProgressBarStyle style;
-  Widget child;
+  Widget childCenter;
   AlignmentGeometry alignment = AlignmentDirectional.centerStart;
   BorderRadiusGeometry borderRadius;
+   EdgeInsetsGeometry paddingChildLeft;
+   EdgeInsetsGeometry paddingChildRight;
 
   @override
   void initState() {
@@ -141,6 +151,20 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
       borderRadius = widget.borderRadius;
     }
 
+    if(widget.paddingChildLeft == null){
+      paddingChildLeft = EdgeInsets.all(16);
+    }else{
+      paddingChildLeft = widget.paddingChildLeft;
+    }
+
+    if(widget.paddingChildRight == null){
+      paddingChildRight = EdgeInsets.all(16);
+    }else{
+      paddingChildRight = widget.paddingChildRight;
+    }
+
+
+
     super.initState();
   }
 
@@ -148,15 +172,6 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     widthProgress = width * widget.percent / 100;
-
-    if (widget.childCenter == null) {
-      child = Text(
-        "${widget.percent}%",
-        style: TextStyle(color: Colors.white),
-      );
-    } else {
-      child = widget.childCenter;
-    }
 
     return Container(
         margin: widget.margin,
@@ -181,7 +196,15 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
                 decoration: BoxDecoration(
                     borderRadius: borderRadius, color: style.colorProgress),
               ),
-              Center(child: child)
+              Center(child:  widget.childCenter),
+              Padding(
+                padding: paddingChildLeft,
+                child: Align(alignment: Alignment.centerLeft,child: widget.childLeft),
+              ),
+              Padding(
+                padding: paddingChildRight,
+                child: Align(alignment: Alignment.centerRight,child: widget.childRight),
+              ),
             ])));
   }
 }
