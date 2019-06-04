@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
+import 'package:flutter_custom_error_page/flutter_custom_error_message.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,11 +19,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    ErrorWidget.builder = ErrorMessageBuilder.build(theme: ErrorTheme.Laravel);
+
     return MaterialApp(
+      builder: (BuildContext context, Widget widget) {
+        ErrorWidget.builder =
+            ErrorMessageBuilder.build(theme: ErrorTheme.Laravel);
+        return widget;
+      },
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Rounded Progrss Bar'),
+          title: Text('Rounded Progrss Bar'),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add),
@@ -54,16 +59,25 @@ class _MyAppState extends State<MyApp> {
                   RoundedProgressBar(
                       percent: percent, childCenter: Text("$percent%")),
                   RoundedProgressBar(
-                      childLeft: Text("$percent%"),
+                      childLeft: Text("$percent%",
+                          style: TextStyle(color: Colors.white)),
                       percent: percent,
                       theme: RoundedProgressBarTheme.green),
                   RoundedProgressBar(
-                      childRight: Text("$percent%"),
+                      childRight: Text("$percent%",
+                          style: TextStyle(color: Colors.white)),
                       percent: percent,
                       theme: RoundedProgressBarTheme.red,
                       reverse: true),
                   RoundedProgressBar(
-                      percent: percent, theme: RoundedProgressBarTheme.purple),
+                      percent: percent,
+                      theme: RoundedProgressBarTheme.purple,
+                      childLeft: AnimatedContainer(
+                        padding: EdgeInsets.only(left: 8),
+                        duration: Duration(milliseconds: 500),
+                        child: Icon(Icons.airplanemode_active,color: Colors.white,),
+                      ),
+                      paddingChildLeft: EdgeInsets.all(0)),
                   RoundedProgressBar(
                       percent: percent,
                       theme: RoundedProgressBarTheme.yellow,

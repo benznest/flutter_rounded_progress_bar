@@ -20,6 +20,8 @@ dev_dependencies:
   flutter_rounded_progress_bar:
     path: ../
 
+  flutter_custom_error_page: 0.1.2
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
