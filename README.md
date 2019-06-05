@@ -1,14 +1,49 @@
-# flutter_rounded_progress_bar
+# Flutter Rounded Progressbar
+Custom Progressbar
 
-A new Flutter plugin.
+![Screenshot](screenshot/a1.gif)
 
-## Getting Started
+## Usage
+simple rounded progress bar.
+```
+RoundedProgressBar(
+    childLeft: Text("$percent%",
+        style: TextStyle(color: Colors.white)),
+    percent: percent,
+    theme: RoundedProgressBarTheme.green)
+```
+![Screenshot](screenshot/1.png)
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+custom style progress bar.
+```
+RoundedProgressBar(
+    style: RoundedProgressBarStyle(
+        widthShadow: 30, colorBorder: Colors.blue[200]),
+    percent: percent,
+    reverse: true,
+),
+RoundedProgressBar(
+    style: RoundedProgressBarStyle(
+        borderWidth: 0, 
+        widthShadow: 0),
+    margin: EdgeInsets.symmetric(vertical: 16),
+    borderRadius: BorderRadius.circular(24),
+    percent: percent,
+),       
+```
+![Screenshot](screenshot/3.png)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+## Theme
+```
+RoundedProgressBarTheme.blue, 
+RoundedProgressBarTheme.red
+RoundedProgressBarTheme.green
+RoundedProgressBarTheme.purple
+RoundedProgressBarTheme.yellow 
+RoundedProgressBarTheme.midnight
+```
+
+## Widget
+childCenter , childLeft , childRight 
+![Screenshot](screenshot/2.png)
