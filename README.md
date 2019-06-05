@@ -3,6 +3,13 @@ Custom Progressbar
 
 ![Screenshot](screenshot/a1.gif)
 
+##Installing
+add dependency in pubspec.yaml
+```
+dependencies:
+  flutter_rounded_progress_bar: 0.1.0
+```
+
 ## Usage
 simple rounded progress bar.
 ```

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
-import 'package:flutter_custom_error_page/flutter_custom_error_message.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,14 +18,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ErrorWidget.builder = ErrorMessageBuilder.build(theme: ErrorTheme.Laravel);
 
     return MaterialApp(
-      builder: (BuildContext context, Widget widget) {
-        ErrorWidget.builder =
-            ErrorMessageBuilder.build(theme: ErrorTheme.Laravel);
-        return widget;
-      },
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(

@@ -1,7 +1,6 @@
-import 'dart:async';
+
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 const Color backgroundProgressDefault = Color(0xFFBBDEFB);
 const Color colorProgressDefault = Color(0xFF42A5F5);

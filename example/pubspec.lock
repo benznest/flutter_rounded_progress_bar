@@ -41,20 +41,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_custom_error_page:
-    dependency: "direct dev"
-    description:
-      name: flutter_custom_error_page
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   flutter_rounded_progress_bar:
     dependency: "direct dev"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
