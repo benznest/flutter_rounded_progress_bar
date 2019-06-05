@@ -3,7 +3,7 @@ Custom Progressbar
 
 ![Screenshot](screenshot/a1.gif)
 
-##Installing
+## Installing
 add dependency in pubspec.yaml
 ```
 dependencies:
