@@ -33,6 +33,16 @@ RoundedProgressBar(
 ```
 ![Screenshot](screenshot/3.png)
 
+Custom duration animation.
+```
+RoundedProgressBar(
+    milliseconds:1000,
+     percent: percent,
+     theme: RoundedProgressBarTheme.yellow,
+     borderRadius: BorderRadius.circular(24)),
+```
+![Screenshot](screenshot/a2.gif)
+
 
 ## Theme
 ```

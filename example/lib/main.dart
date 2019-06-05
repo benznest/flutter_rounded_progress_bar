@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  percent += 5;
+                  percent += 100;
                 });
               },
             ),
@@ -79,6 +79,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                       paddingChildLeft: EdgeInsets.all(0)),
                   RoundedProgressBar(
+                      milliseconds:1000,
                       percent: percent,
                       theme: RoundedProgressBarTheme.yellow,
                       borderRadius: BorderRadius.circular(24)),
