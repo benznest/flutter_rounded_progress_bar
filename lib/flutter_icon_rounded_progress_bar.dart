@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 
-
-
-class RoundedProgressBar extends StatefulWidget {
+class IconRoundedProgressBar extends StatefulWidget {
   final double percent;
   final double height;
+  final double widthIconSection;
   final RoundedProgressBarStyle style;
   final RoundedProgressBarTheme theme;
   final EdgeInsetsGeometry margin;
@@ -17,30 +16,34 @@ class RoundedProgressBar extends StatefulWidget {
   final bool reverse;
   final int milliseconds;
   final BorderRadiusGeometry borderRadius;
+  final Widget icon;
 
-  RoundedProgressBar(
-      {this.percent = 40,
-      this.height = 50,
-      this.style,
-      this.theme,
-      this.margin,
-      this.reverse = false,
-      this.childCenter,
-      this.childLeft,
-      this.childRight,
-      this.milliseconds = 500,
-      this.borderRadius,
-      this.paddingChildLeft,
-      this.paddingChildRight}) {
+  IconRoundedProgressBar({
+    @required this.icon,
+    this.widthIconSection = 50,
+    this.percent = 40,
+    this.height = 50,
+    this.style,
+    this.theme,
+    this.margin,
+    this.reverse = false,
+    this.childCenter,
+    this.childLeft,
+    this.childRight,
+    this.milliseconds = 500,
+    this.borderRadius,
+    this.paddingChildLeft,
+    this.paddingChildRight,
+  }) {
     assert(percent >= 0);
     assert(height > 0);
   }
 
   @override
-  State<StatefulWidget> createState() => RoundedProgressBarState();
+  State<StatefulWidget> createState() => IconRoundedProgressBarState();
 }
 
-class RoundedProgressBarState extends State<RoundedProgressBar> {
+class IconRoundedProgressBarState extends State<IconRoundedProgressBar> {
   double width;
   double maxWidth;
   double widthProgress;
@@ -140,19 +143,45 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
               decoration: BoxDecoration(
                   borderRadius: borderRadius, color: style.backgroundProgress),
               child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                      color: style.colorBackgroundIcon,
+                      borderRadius: BorderRadius.only(
+                        topLeft:
+                            borderRadius.resolve(TextDirection.ltr).topLeft,
+                        bottomLeft:
+                            borderRadius.resolve(TextDirection.ltr).bottomLeft,
+                      )),
+                  constraints:
+                      BoxConstraints.expand(width: widget.widthIconSection),
+                  child: widget.icon,
+                ),
                 Expanded(
                     child: Stack(alignment: alignment, children: <Widget>[
                   AnimatedContainer(
                       duration: Duration(milliseconds: widget.milliseconds),
                       width: widthProgress + style.widthShadow,
                       decoration: BoxDecoration(
-                          borderRadius: borderRadius,
+                          borderRadius: BorderRadius.only(
+                              topRight: borderRadius
+                                  .resolve(TextDirection.ltr)
+                                  .topRight,
+                              bottomRight: borderRadius
+                                  .resolve(TextDirection.ltr)
+                                  .bottomRight),
                           color: style.colorProgressDark)),
                   AnimatedContainer(
                     duration: Duration(milliseconds: widget.milliseconds),
                     width: widthProgress,
                     decoration: BoxDecoration(
-                        borderRadius: borderRadius, color: style.colorProgress),
+                        borderRadius: BorderRadius.only(
+                            topRight: borderRadius
+                                .resolve(TextDirection.ltr)
+                                .topRight,
+                            bottomRight: borderRadius
+                                .resolve(TextDirection.ltr)
+                                .bottomRight),
+                        color: style.colorProgress),
                   ),
                   Center(child: widget.childCenter),
                   Padding(

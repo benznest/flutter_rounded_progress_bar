@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_progress_bar/flutter_icon_rounded_progress_bar.dart';
 import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
+import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +20,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  percent += 100;
+                  percent += 5;
                 });
               },
             ),
@@ -68,11 +69,14 @@ class _MyAppState extends State<MyApp> {
                       childLeft: AnimatedContainer(
                         padding: EdgeInsets.only(left: 8),
                         duration: Duration(milliseconds: 500),
-                        child: Icon(Icons.airplanemode_active,color: Colors.white,),
+                        child: Icon(
+                          Icons.airplanemode_active,
+                          color: Colors.white,
+                        ),
                       ),
                       paddingChildLeft: EdgeInsets.all(0)),
                   RoundedProgressBar(
-                      milliseconds:1000,
+                      milliseconds: 1000,
                       percent: percent,
                       theme: RoundedProgressBarTheme.yellow,
                       borderRadius: BorderRadius.circular(24)),
@@ -96,6 +100,34 @@ class _MyAppState extends State<MyApp> {
                         RoundedProgressBarStyle(borderWidth: 0, widthShadow: 0),
                     margin: EdgeInsets.symmetric(vertical: 16),
                     borderRadius: BorderRadius.circular(24),
+                    percent: percent,
+                  ),
+
+                  IconRoundedProgressBar(
+                    icon: Padding(
+                        padding: EdgeInsets.all(8), child: Icon(Icons.person)),
+                    theme: RoundedProgressBarTheme.green,
+                    margin: EdgeInsets.symmetric(vertical: 16),
+                    borderRadius: BorderRadius.circular(6),
+                    percent: percent,
+                  ),
+
+                  IconRoundedProgressBar(
+                    widthIconSection: 70,
+                    reverse: true,
+                    icon: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Icon(Icons.airline_seat_flat, color: Colors.white)),
+                    style: RoundedProgressBarStyle(
+                        colorBackgroundIcon: Color(0xffc0392b),
+                        colorProgress: Color(0xffe74c3c),
+                        colorProgressDark: Color(0xffc0392b),
+                        colorBorder: Color(0xff2c3e50),
+                        backgroundProgress: Color(0xff4a627a),
+                        borderWidth: 4,
+                        widthShadow: 6),
+                    margin: EdgeInsets.symmetric(vertical: 16),
+                    borderRadius: BorderRadius.circular(6),
                     percent: percent,
                   ),
                 ],
