@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(200.0),
           child: Center(
             child: ListView(children: <Widget>[
               Column(

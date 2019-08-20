@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 
-
-
 class RoundedProgressBar extends StatefulWidget {
   final double percent;
   final double height;
@@ -61,41 +59,18 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
 
     if (widget.theme != null) {
       if (widget.theme == RoundedProgressBarTheme.blue) {
-        style = RoundedProgressBarStyle(
-            backgroundProgress: backgroundProgressDefault,
-            colorProgress: colorProgressBlue,
-            colorProgressDark: colorProgressBlueDark,
-            colorBorder: colorBorderDefault);
+        style = RoundedProgressBarStyle(backgroundProgress: backgroundProgressDefault, colorProgress: colorProgressBlue, colorProgressDark: colorProgressBlueDark, colorBorder: colorBorderDefault);
       } else if (widget.theme == RoundedProgressBarTheme.red) {
-        style = RoundedProgressBarStyle(
-            backgroundProgress: backgroundProgressDefault,
-            colorProgress: colorProgressRed,
-            colorProgressDark: colorProgressRedDark,
-            colorBorder: colorBorderDefault);
+        style = RoundedProgressBarStyle(backgroundProgress: backgroundProgressDefault, colorProgress: colorProgressRed, colorProgressDark: colorProgressRedDark, colorBorder: colorBorderDefault);
       } else if (widget.theme == RoundedProgressBarTheme.green) {
-        style = RoundedProgressBarStyle(
-            backgroundProgress: backgroundProgressDefault,
-            colorProgress: colorProgressGreen,
-            colorProgressDark: colorProgressGreenDark,
-            colorBorder: colorBorderDefault);
+        style = RoundedProgressBarStyle(backgroundProgress: backgroundProgressDefault, colorProgress: colorProgressGreen, colorProgressDark: colorProgressGreenDark, colorBorder: colorBorderDefault);
       } else if (widget.theme == RoundedProgressBarTheme.purple) {
-        style = RoundedProgressBarStyle(
-            backgroundProgress: backgroundProgressDefault,
-            colorProgress: colorProgressPurple,
-            colorProgressDark: colorProgressPurpleDark,
-            colorBorder: colorBorderDefault);
+        style = RoundedProgressBarStyle(backgroundProgress: backgroundProgressDefault, colorProgress: colorProgressPurple, colorProgressDark: colorProgressPurpleDark, colorBorder: colorBorderDefault);
       } else if (widget.theme == RoundedProgressBarTheme.yellow) {
-        style = RoundedProgressBarStyle(
-            backgroundProgress: backgroundProgressDefault,
-            colorProgress: colorProgressYellow,
-            colorProgressDark: colorProgressYellowDark,
-            colorBorder: colorBorderDefault);
+        style = RoundedProgressBarStyle(backgroundProgress: backgroundProgressDefault, colorProgress: colorProgressYellow, colorProgressDark: colorProgressYellowDark, colorBorder: colorBorderDefault);
       } else if (widget.theme == RoundedProgressBarTheme.midnight) {
-        style = RoundedProgressBarStyle(
-            backgroundProgress: backgroundProgressDefault,
-            colorProgress: colorProgressMidnight,
-            colorProgressDark: colorProgressMidnightDark,
-            colorBorder: colorBorderDefault);
+        style =
+            RoundedProgressBarStyle(backgroundProgress: backgroundProgressDefault, colorProgress: colorProgressMidnight, colorProgressDark: colorProgressMidnightDark, colorBorder: colorBorderDefault);
       }
     }
 
@@ -126,49 +101,42 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    widthProgress = width * widget.percent / 100;
 
-    return Container(
-        margin: widget.margin,
-        decoration:
-            BoxDecoration(borderRadius: borderRadius, color: style.colorBorder),
-        padding: EdgeInsets.all(style.borderWidth),
-        child: Column(children: <Widget>[
-          Container(
-              constraints: BoxConstraints.expand(height: widget.height),
-              decoration: BoxDecoration(
-                  borderRadius: borderRadius, color: style.backgroundProgress),
-              child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-                Expanded(
-                    child: Stack(alignment: alignment, children: <Widget>[
-                  AnimatedContainer(
+    return LayoutBuilder(builder: (context, constraint) {
+      width = constraint.maxWidth;
+      widthProgress = width * widget.percent / 100;
+      return Container(
+          margin: widget.margin,
+          decoration: BoxDecoration(borderRadius: borderRadius, color: style.colorBorder),
+          padding: EdgeInsets.all(style.borderWidth),
+          child: Column(children: <Widget>[
+            Container(
+                constraints: BoxConstraints.expand(height: widget.height),
+                decoration: BoxDecoration(borderRadius: borderRadius, color: style.backgroundProgress),
+                child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
+                  Expanded(
+                      child: Stack(alignment: alignment, children: <Widget>[
+                    AnimatedContainer(
+                        duration: Duration(milliseconds: widget.milliseconds),
+                        width: widthProgress + style.widthShadow,
+                        decoration: BoxDecoration(borderRadius: borderRadius, color: style.colorProgressDark)),
+                    AnimatedContainer(
                       duration: Duration(milliseconds: widget.milliseconds),
-                      width: widthProgress + style.widthShadow,
-                      decoration: BoxDecoration(
-                          borderRadius: borderRadius,
-                          color: style.colorProgressDark)),
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: widget.milliseconds),
-                    width: widthProgress,
-                    decoration: BoxDecoration(
-                        borderRadius: borderRadius, color: style.colorProgress),
-                  ),
-                  Center(child: widget.childCenter),
-                  Padding(
-                    padding: paddingChildLeft,
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: widget.childLeft),
-                  ),
-                  Padding(
-                    padding: paddingChildRight,
-                    child: Align(
-                        alignment: Alignment.centerRight,
-                        child: widget.childRight),
-                  )
+                      width: widthProgress,
+                      decoration: BoxDecoration(borderRadius: borderRadius, color: style.colorProgress),
+                    ),
+                    Center(child: widget.childCenter),
+                    Padding(
+                      padding: paddingChildLeft,
+                      child: Align(alignment: Alignment.centerLeft, child: widget.childLeft),
+                    ),
+                    Padding(
+                      padding: paddingChildRight,
+                      child: Align(alignment: Alignment.centerRight, child: widget.childRight),
+                    )
+                  ]))
                 ]))
-              ]))
-        ]));
+          ]));
+    });
   }
 }
