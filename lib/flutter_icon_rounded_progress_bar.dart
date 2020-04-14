@@ -130,7 +130,7 @@ class IconRoundedProgressBarState extends State<IconRoundedProgressBar> {
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
-    widthProgress = width * widget.percent / 100;
+    widthProgress = width * (widget.percent / 100);
 
     return Container(
         margin: widget.margin,
