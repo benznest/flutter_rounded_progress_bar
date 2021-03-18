@@ -7,7 +7,7 @@ Custom Progressbar
 add dependency in pubspec.yaml
 ```
 dependencies:
-  flutter_rounded_progress_bar: 0.1.1
+  flutter_rounded_progress_bar: 0.2.0
 ```
 
 ## Usage
