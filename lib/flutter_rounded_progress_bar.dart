@@ -4,17 +4,17 @@ import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 class RoundedProgressBar extends StatefulWidget {
   final double percent;
   final double height;
-  final RoundedProgressBarStyle style;
-  final RoundedProgressBarTheme theme;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry paddingChildLeft;
-  final EdgeInsetsGeometry paddingChildRight;
-  final Widget childCenter;
-  final Widget childLeft;
-  final Widget childRight;
+  final RoundedProgressBarStyle? style;
+  final RoundedProgressBarTheme? theme;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? paddingChildLeft;
+  final EdgeInsetsGeometry? paddingChildRight;
+  final Widget? childCenter;
+  final Widget? childLeft;
+  final Widget? childRight;
   final bool reverse;
   final int milliseconds;
-  final BorderRadiusGeometry borderRadius;
+  final BorderRadiusGeometry? borderRadius;
 
   RoundedProgressBar(
       {this.percent = 40,
@@ -39,15 +39,15 @@ class RoundedProgressBar extends StatefulWidget {
 }
 
 class RoundedProgressBarState extends State<RoundedProgressBar> {
-  double width;
-  double maxWidth;
-  double widthProgress;
-  RoundedProgressBarStyle style;
-  Widget childCenter;
+  late double width;
+  double? maxWidth;
+  double? widthProgress;
+  RoundedProgressBarStyle? style;
+  Widget? childCenter;
   AlignmentGeometry alignment = AlignmentDirectional.centerStart;
-  BorderRadiusGeometry borderRadius;
-  EdgeInsetsGeometry paddingChildLeft;
-  EdgeInsetsGeometry paddingChildRight;
+  BorderRadiusGeometry? borderRadius;
+  EdgeInsetsGeometry? paddingChildLeft;
+  EdgeInsetsGeometry? paddingChildRight;
 
   @override
   void initState() {
@@ -107,31 +107,31 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
       widthProgress = width * widget.percent / 100;
       return Container(
           margin: widget.margin,
-          decoration: BoxDecoration(borderRadius: borderRadius, color: style.colorBorder),
-          padding: EdgeInsets.all(style.borderWidth),
+          decoration: BoxDecoration(borderRadius: borderRadius, color: style!.colorBorder),
+          padding: EdgeInsets.all(style!.borderWidth),
           child: Column(children: <Widget>[
             Container(
                 constraints: BoxConstraints.expand(height: widget.height),
-                decoration: BoxDecoration(borderRadius: borderRadius, color: style.backgroundProgress),
+                decoration: BoxDecoration(borderRadius: borderRadius, color: style!.backgroundProgress),
                 child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
                   Expanded(
                       child: Stack(alignment: alignment, children: <Widget>[
                     AnimatedContainer(
                         duration: Duration(milliseconds: widget.milliseconds),
-                        width: widthProgress + style.widthShadow,
-                        decoration: BoxDecoration(borderRadius: borderRadius, color: style.colorProgressDark)),
+                        width: widthProgress! + style!.widthShadow,
+                        decoration: BoxDecoration(borderRadius: borderRadius, color: style!.colorProgressDark)),
                     AnimatedContainer(
                       duration: Duration(milliseconds: widget.milliseconds),
                       width: widthProgress,
-                      decoration: BoxDecoration(borderRadius: borderRadius, color: style.colorProgress),
+                      decoration: BoxDecoration(borderRadius: borderRadius, color: style!.colorProgress),
                     ),
                     Center(child: widget.childCenter),
                     Padding(
-                      padding: paddingChildLeft,
+                      padding: paddingChildLeft!,
                       child: Align(alignment: Alignment.centerLeft, child: widget.childLeft),
                     ),
                     Padding(
-                      padding: paddingChildRight,
+                      padding: paddingChildRight!,
                       child: Align(alignment: Alignment.centerRight, child: widget.childRight),
                     )
                   ]))

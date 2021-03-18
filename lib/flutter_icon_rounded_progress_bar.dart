@@ -5,21 +5,21 @@ class IconRoundedProgressBar extends StatefulWidget {
   final double percent;
   final double height;
   final double widthIconSection;
-  final RoundedProgressBarStyle style;
-  final RoundedProgressBarTheme theme;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry paddingChildLeft;
-  final EdgeInsetsGeometry paddingChildRight;
-  final Widget childCenter;
-  final Widget childLeft;
-  final Widget childRight;
+  final RoundedProgressBarStyle? style;
+  final RoundedProgressBarTheme? theme;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? paddingChildLeft;
+  final EdgeInsetsGeometry? paddingChildRight;
+  final Widget? childCenter;
+  final Widget? childLeft;
+  final Widget? childRight;
   final bool reverse;
   final int milliseconds;
-  final BorderRadiusGeometry borderRadius;
+  final BorderRadiusGeometry? borderRadius;
   final Widget icon;
 
   IconRoundedProgressBar({
-    @required this.icon,
+    required this.icon,
     this.widthIconSection = 50,
     this.percent = 40,
     this.height = 50,
@@ -44,15 +44,15 @@ class IconRoundedProgressBar extends StatefulWidget {
 }
 
 class IconRoundedProgressBarState extends State<IconRoundedProgressBar> {
-  double width;
-  double maxWidth;
-  double widthProgress;
-  RoundedProgressBarStyle style;
-  Widget childCenter;
+  late double width;
+  double? maxWidth;
+  double? widthProgress;
+  RoundedProgressBarStyle? style;
+  Widget? childCenter;
   AlignmentGeometry alignment = AlignmentDirectional.centerStart;
-  BorderRadiusGeometry borderRadius;
-  EdgeInsetsGeometry paddingChildLeft;
-  EdgeInsetsGeometry paddingChildRight;
+  BorderRadiusGeometry? borderRadius;
+  EdgeInsetsGeometry? paddingChildLeft;
+  EdgeInsetsGeometry? paddingChildRight;
 
   @override
   void initState() {
@@ -135,22 +135,22 @@ class IconRoundedProgressBarState extends State<IconRoundedProgressBar> {
     return Container(
         margin: widget.margin,
         decoration:
-            BoxDecoration(borderRadius: borderRadius, color: style.colorBorder),
-        padding: EdgeInsets.all(style.borderWidth),
+            BoxDecoration(borderRadius: borderRadius, color: style!.colorBorder),
+        padding: EdgeInsets.all(style!.borderWidth),
         child: Column(children: <Widget>[
           Container(
               constraints: BoxConstraints.expand(height: widget.height),
               decoration: BoxDecoration(
-                  borderRadius: borderRadius, color: style.backgroundProgress),
+                  borderRadius: borderRadius, color: style!.backgroundProgress),
               child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                      color: style.colorBackgroundIcon,
+                      color: style!.colorBackgroundIcon,
                       borderRadius: BorderRadius.only(
                         topLeft:
-                            borderRadius.resolve(TextDirection.ltr).topLeft,
+                            borderRadius!.resolve(TextDirection.ltr).topLeft,
                         bottomLeft:
-                            borderRadius.resolve(TextDirection.ltr).bottomLeft,
+                            borderRadius!.resolve(TextDirection.ltr).bottomLeft,
                       )),
                   constraints:
                       BoxConstraints.expand(width: widget.widthIconSection),
@@ -160,38 +160,38 @@ class IconRoundedProgressBarState extends State<IconRoundedProgressBar> {
                     child: Stack(alignment: alignment, children: <Widget>[
                   AnimatedContainer(
                       duration: Duration(milliseconds: widget.milliseconds),
-                      width: widthProgress + style.widthShadow,
+                      width: widthProgress! + style!.widthShadow,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                              topRight: borderRadius
+                              topRight: borderRadius!
                                   .resolve(TextDirection.ltr)
                                   .topRight,
-                              bottomRight: borderRadius
+                              bottomRight: borderRadius!
                                   .resolve(TextDirection.ltr)
                                   .bottomRight),
-                          color: style.colorProgressDark)),
+                          color: style!.colorProgressDark)),
                   AnimatedContainer(
                     duration: Duration(milliseconds: widget.milliseconds),
                     width: widthProgress,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                            topRight: borderRadius
+                            topRight: borderRadius!
                                 .resolve(TextDirection.ltr)
                                 .topRight,
-                            bottomRight: borderRadius
+                            bottomRight: borderRadius!
                                 .resolve(TextDirection.ltr)
                                 .bottomRight),
-                        color: style.colorProgress),
+                        color: style!.colorProgress),
                   ),
                   Center(child: widget.childCenter),
                   Padding(
-                    padding: paddingChildLeft,
+                    padding: paddingChildLeft!,
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: widget.childLeft),
                   ),
                   Padding(
-                    padding: paddingChildRight,
+                    padding: paddingChildRight!,
                     child: Align(
                         alignment: Alignment.centerRight,
                         child: widget.childRight),
