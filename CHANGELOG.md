@@ -1,3 +1,7 @@
+##0.3.0
+Migrate AndroidX.
+Add key param for RoundedProgressBar.
+
 ##0.2.0
 Migrate to null-safety
 

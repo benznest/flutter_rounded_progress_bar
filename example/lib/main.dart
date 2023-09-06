@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(200.0),
+          padding: EdgeInsets.all(16),
           child: Center(
             child: ListView(children: <Widget>[
               Column(
@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
                               color: Colors.yellow))),
                   RoundedProgressBar(
                     style: RoundedProgressBarStyle(
-                        widthShadow: 30, colorBorder: Colors.blue[200]),
+                        widthShadow: 30, colorBorder: Colors.blue[200]!),
                     percent: percent,
                     reverse: true,
                   ),
@@ -102,7 +102,6 @@ class _MyAppState extends State<MyApp> {
                     borderRadius: BorderRadius.circular(24),
                     percent: percent,
                   ),
-
                   IconRoundedProgressBar(
                     icon: Padding(
                         padding: EdgeInsets.all(8), child: Icon(Icons.person)),
@@ -111,13 +110,13 @@ class _MyAppState extends State<MyApp> {
                     borderRadius: BorderRadius.circular(6),
                     percent: percent,
                   ),
-
                   IconRoundedProgressBar(
                     widthIconSection: 70,
                     reverse: true,
                     icon: Padding(
                         padding: EdgeInsets.all(8),
-                        child: Icon(Icons.airline_seat_flat, color: Colors.white)),
+                        child:
+                            Icon(Icons.airline_seat_flat, color: Colors.white)),
                     style: RoundedProgressBarStyle(
                         colorBackgroundIcon: Color(0xffc0392b),
                         colorProgress: Color(0xffe74c3c),
