@@ -1,3 +1,6 @@
+##0.3.1
+Migrate FlutterPlugin.
+
 ##0.3.0
 Migrate AndroidX.
 Add key param for RoundedProgressBar.

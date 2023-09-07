@@ -2,6 +2,7 @@ group 'com.benzneststudios.flutter_rounded_progress_bar'
 version '1.0-SNAPSHOT'
 
 buildscript {
+    ext.kotlin_version = '1.8.21'
     repositories {
         google()
         jcenter()
