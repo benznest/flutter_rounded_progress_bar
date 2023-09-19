@@ -1,6 +1,6 @@
 name: flutter_rounded_progress_bar
 description: Rounded Progressbar in Flutter that customize color and border.
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/benznest/flutter_rounded_progress_bar
 
 environment:
@@ -19,16 +19,11 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
-flutter:
+#flutter:
   # This section identifies this Flutter project as a plugin project.
   # The androidPackage and pluginClass identifiers should not ordinarily
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
-  plugin:
-    platforms:
-      android:
-        package: com.benzneststudios.flutter_rounded_progress_bar
-        pluginClass: FlutterRoundedProgressBarPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
