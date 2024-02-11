@@ -128,7 +128,7 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) {
       width = constraint.maxWidth;
-      widthProgress = width * widget.percent / 100;
+      widthProgress = width * (widget.percent / 100);
       return Container(
           margin: widget.margin,
           decoration: BoxDecoration(
