@@ -4,6 +4,7 @@ import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 class RoundedProgressBar extends StatefulWidget {
   final double percent;
   final double height;
+  final int animationDelay;
   final RoundedProgressBarStyle? style;
   final RoundedProgressBarTheme? theme;
   final EdgeInsetsGeometry? margin;
@@ -28,6 +29,7 @@ class RoundedProgressBar extends StatefulWidget {
       this.childLeft,
       this.childRight,
       this.milliseconds = 500,
+      this.animationDelay = 500,
       this.borderRadius,
       this.paddingChildLeft,
       this.paddingChildRight})
@@ -50,6 +52,7 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
   BorderRadiusGeometry? borderRadius;
   EdgeInsetsGeometry? paddingChildLeft;
   EdgeInsetsGeometry? paddingChildRight;
+  bool _showProgress = false;
 
   @override
   void initState() {
@@ -120,6 +123,11 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
     } else {
       paddingChildRight = widget.paddingChildRight;
     }
+    Future.delayed(Duration(milliseconds: widget.animationDelay)).then((value) {
+      setState(() {
+        _showProgress = true;
+      });
+    });
 
     super.initState();
   }
@@ -128,7 +136,7 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) {
       width = constraint.maxWidth;
-      widthProgress = width * (widget.percent / 100);
+      widthProgress = (width * (widget.percent / 100));
       return Container(
           margin: widget.margin,
           decoration: BoxDecoration(
@@ -143,33 +151,35 @@ class RoundedProgressBarState extends State<RoundedProgressBar> {
                 child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
                   Expanded(
                       child: Stack(alignment: alignment, children: <Widget>[
-                    AnimatedContainer(
-                        duration: Duration(milliseconds: widget.milliseconds),
-                        width: widthProgress! + style!.widthShadow,
-                        decoration: BoxDecoration(
-                            borderRadius: borderRadius,
-                            color: style!.colorProgressDark)),
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: widget.milliseconds),
-                      width: widthProgress,
-                      decoration: BoxDecoration(
-                          borderRadius: borderRadius,
-                          color: style!.colorProgress),
-                    ),
-                    Center(child: widget.childCenter),
-                    Padding(
-                      padding: paddingChildLeft!,
-                      child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: widget.childLeft),
-                    ),
-                    Padding(
-                      padding: paddingChildRight!,
-                      child: Align(
-                          alignment: Alignment.centerRight,
-                          child: widget.childRight),
-                    )
-                  ]))
+                        AnimatedContainer(
+                            duration: Duration(
+                                milliseconds: widget.milliseconds),
+                            width: _showProgress ? widthProgress! +
+                                style!.widthShadow : 0,
+                            decoration: BoxDecoration(
+                                borderRadius: borderRadius,
+                                color: style!.colorProgressDark)),
+                        AnimatedContainer(
+                          duration: Duration(milliseconds: widget.milliseconds),
+                          width: _showProgress ? widthProgress : 0,
+                          decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              color: style!.colorProgress),
+                        ),
+                        Center(child: widget.childCenter),
+                        Padding(
+                          padding: paddingChildLeft!,
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: widget.childLeft),
+                        ),
+                        Padding(
+                          padding: paddingChildRight!,
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: widget.childRight),
+                        )
+                      ]))
                 ]))
           ]));
     });
